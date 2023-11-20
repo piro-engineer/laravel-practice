@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 class Postcontroller extends Controller
 {
@@ -25,7 +26,8 @@ class Postcontroller extends Controller
     }
 
     public function index(){
-        $posts = Post::all();
+        $posts = Post::where('user_id', auth()->id())->get();
+      
         return view('post.index', compact('posts'));
     }
 }

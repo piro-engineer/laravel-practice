@@ -38,3 +38,4 @@ require __DIR__.'/auth.php';
 Route::get('post/create', [Postcontroller::class, 'create']);
 
 Route::post('post', [Postcontroller::class, 'store'])->name('post.store');
+Route::get('post', [Postcontroller::class, 'index']);
