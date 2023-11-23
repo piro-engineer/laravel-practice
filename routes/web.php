@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Postcontroller;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,9 @@ Route::get('/test', [TestController::class, 'test'])
 
 require __DIR__.'/auth.php';
 
-Route::get('post/create', [Postcontroller::class, 'create']);
+// Route::middleware(['auth', 'admin'])->group(function() {
+    Route::get('post/create', [Postcontroller::class, 'create']);
+    Route::get('post', [Postcontroller::class, 'index']);
+// });
 
-Route::post('post', [Postcontroller::class, 'store'])->name('post.store');
-Route::get('post', [Postcontroller::class, 'index']);
+Route::post('post', [Postcontroller::class, 'store'])->name('post.store') ->middleware('auth');
