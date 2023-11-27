@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\Postcontroller;
+use App\Http\Controllers\PostController;
 use GuzzleHttp\Middleware;
 
 /*
@@ -37,8 +37,18 @@ Route::get('/test', [TestController::class, 'test'])
 require __DIR__.'/auth.php';
 
 // Route::middleware(['auth', 'admin'])->group(function() {
-    Route::get('post/create', [Postcontroller::class, 'create']);
-    Route::get('post', [Postcontroller::class, 'index']);
+//     Route::get('post/create', [PostController::class, 'create']);
+//     Route::get('post', [PostController::class, 'index'])->name('post.index');
 // });
 
-Route::post('post', [Postcontroller::class, 'store'])->name('post.store') ->middleware('auth');
+// Route::post('post', [PostController::class, 'store'])->name('post.store') ->middleware('auth');
+
+// Route::get('post/show/{post}', [PostController::class, 'show'])->name('post.show');
+
+// Route::get('post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+
+// Route::patch('post/{post}', [PostController::class, 'update'])->name('post.update');
+
+// Route::delete('post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+
+Route::resource('post', PostController::class);
